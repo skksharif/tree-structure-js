@@ -167,7 +167,7 @@ header select {
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 1);
   cursor: pointer;
-  margin-top: 5px;
+
   transition: 0.5s;
 }
 .tree .card img {
@@ -259,10 +259,15 @@ header select {
   transform: scale(1.05);
 }
 .card.exact-match {
-  background-color: #d4fcd4; /* Light green background for exact matches */
+  background-color: #d4fcd4;
 }
 
-.card.highlight {
-  background-color: #fdf4d4; /* Light yellow background for highlighted matches */
+#clear-button{
+  padding: 10px;
+  margin: 0 20px;
+  border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.119);
+  cursor: pointer;
 }
+
 

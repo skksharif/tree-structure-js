@@ -9,7 +9,6 @@ const data = {
   employees: employeeData.employees,
 };
 
-// Define grade ranges based on ratings
 const getGrade = (rating) => {
   if (rating >= 4.0) return "A";
   if (rating >= 3.0) return "B";
@@ -110,8 +109,8 @@ const TreeNode = ({ node, isRoot, searchTerm }) => {
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [departmentFilter, setDepartmentFilter] = useState("All");
-  const [gradeFilter, setGradeFilter] = useState("All"); // New state for grades
-  const [scale, setScale] = useState(1); // Scale state for zooming
+  const [gradeFilter, setGradeFilter] = useState("All");
+  const [scale, setScale] = useState(1);
 
   const filteredData = data.employees
     .map((employee) =>
@@ -119,14 +118,19 @@ export default function App() {
     )
     .filter((employee) => employee);
 
-  // Zoom in function
   const zoomIn = () => {
-    setScale((prevScale) => Math.min(prevScale + 0.1, 2)); // Max zoom is 200%
+    setScale((prevScale) => Math.min(prevScale + 0.1, 2)); 
   };
 
-  // Zoom out function
   const zoomOut = () => {
-    setScale((prevScale) => Math.max(prevScale - 0.1, 0.5)); // Min zoom is 50%
+    setScale((prevScale) => Math.max(prevScale - 0.1, 0.5)); 
+  };
+
+  // Clear all filters when the button is clicked
+  const clearFilters = () => {
+    setSearchTerm("");
+    setDepartmentFilter("All");
+    setGradeFilter("All");
   };
 
   return (
@@ -168,6 +172,7 @@ export default function App() {
               <option value="C">Grade C</option>
               <option value="D">Grade D</option>
             </select>
+            <button onClick={clearFilters} id="clear-button">Clear Filters</button>
           </div>
         </header>
         <div className="tree">
@@ -197,4 +202,3 @@ export default function App() {
     </>
   );
 }
-
