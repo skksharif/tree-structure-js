@@ -1,0 +1,245 @@
+{
+  "employees": [
+    {
+      "name": "Sam Clark",
+      "position": "CEO",
+      "department": "Executive",
+      "metrics": {
+        "target_achievement": "80%",
+        "engagement_score": "80%",
+        "rating": 4.7,
+        "feedback": "2/5"
+      },
+      "reports": [
+        {
+          "name": "Austin Smith",
+          "position": "Sr Manager",
+          "department": "Marketing",
+          "metrics": {
+            "target_achievement": "80%",
+            "engagement_score": "80%",
+            "rating": 3.9,
+            "feedback": "2/5"
+          },
+          "reports": [
+            {
+              "name": "Ram Kumar",
+              "position": "Marketing Associate",
+              "department": "Marketing",
+              "metrics": {
+                "target_achievement": "70%",
+                "engagement_score": "75%",
+                "rating": 3.2,
+                "feedback": "4/5"
+              },
+              "reports": [],
+              "image": "./image/8.jpg"
+            }
+          ],
+          "image": "./image/1.jpg"
+        },
+        {
+          "name": "Mary Jane",
+          "position": "Sr Manager",
+          "department": "Design",
+          "metrics": {
+            "target_achievement": "80%",
+            "engagement_score": "80%",
+            "rating": 4.4,
+            "feedback": "2/5"
+          },
+          "reports": [
+            {
+              "name": "Hygriv",
+              "position": "Designer",
+              "department": "Design",
+              "metrics": {
+                "target_achievement": "85%",
+                "engagement_score": "90%",
+                "rating": 4.8,
+                "feedback": "3/5"
+              },
+              "reports": [],
+              "image": "./image/9.jpg"
+            },
+            {
+              "name": "Pavan Sai",
+              "position": "Sr Designer",
+              "department": "Design",
+              "metrics": {
+                "target_achievement": "95%",
+                "engagement_score": "85%",
+                "rating": 4.9,
+                "feedback": "5/5"
+              },
+              "reports": [],
+              "image": "./image/10.jpg"
+            },
+            {
+              "name": "Swamy",
+              "position": "Jr Designer",
+              "department": "Design",
+              "metrics": {
+                "target_achievement": "60%",
+                "engagement_score": "70%",
+                "rating": 3.1,
+                "feedback": "3/5"
+              },
+              "reports": [],
+              "image": "./image/11.jpg"
+            },
+            {
+              "name": "Karthik",
+              "position": "Sr Designer",
+              "department": "Design",
+              "metrics": {
+                "target_achievement": "80%",
+                "engagement_score": "80%",
+                "rating": 4.2,
+                "feedback": "2/5"
+              },
+              "reports": [],
+              "image": "./image/12.jpg"
+            }
+          ],
+          "image": "./image/2.jpg"
+        },
+        {
+          "name": "Kevin Murphy",
+          "position": "Sr Manager",
+          "department": "Development",
+          "metrics": {
+            "target_achievement": "80%",
+            "engagement_score": "80%",
+            "rating": 3.7,
+            "feedback": "2/5"
+          },
+          "reports": [
+            {
+              "name": "Abhishek",
+              "position": "Developer",
+              "department": "Development",
+              "metrics": {
+                "target_achievement": "75%",
+                "engagement_score": "80%",
+                "rating": 3.4,
+                "feedback": "3/5"
+              },
+              "reports": [],
+              "image": "./image/13.jpg"
+            },
+            {
+              "name": "Bharat",
+              "position": "Sr Developer",
+              "department": "Development",
+              "metrics": {
+                "target_achievement": "80%",
+                "engagement_score": "85%",
+                "rating": 4.5,
+                "feedback": "4/5"
+              },
+              "reports": [],
+              "image": "./image/14.jpg"
+            },
+            {
+              "name": "Ajay",
+              "position": "Jr Developer",
+              "department": "Development",
+              "metrics": {
+                "target_achievement": "60%",
+                "engagement_score": "70%",
+                "rating": 2.9,
+                "feedback": "2/5"
+              },
+              "reports": [],
+              "image": "./image/15.jpg"
+            },
+            {
+              "name": "Vignesh",
+              "position": "Jr Developer",
+              "department": "Development",
+              "metrics": {
+                "target_achievement": "90%",
+                "engagement_score": "88%",
+                "rating": 4.6,
+                "feedback": "5/5"
+              },
+              "reports": [],
+              "image": "./image/16.jpg"
+            }
+          ],
+          "image": "./image/3.jpg"
+        },
+        {
+          "name": "Farah Nassar",
+          "position": "Sr Manager",
+          "department": "Sales",
+          "metrics": {
+            "target_achievement": "80%",
+            "engagement_score": "80%",
+            "rating": 3.5,
+            "feedback": "2/5"
+          },
+          "reports": [
+            {
+              "name": "Rachel Kim",
+              "position": "Sr Associate",
+              "department": "Sales",
+              "metrics": {
+                "target_achievement": "80%",
+                "engagement_score": "80%",
+                "rating": 4.3,
+                "feedback": "2/5"
+              },
+              "reports": [
+                {
+                  "name": "Maya Thompson",
+                  "position": "Associate",
+                  "department": "Sales",
+                  "metrics": {
+                    "target_achievement": "10%",
+                    "engagement_score": "80%",
+                    "rating": 2.1,
+                    "feedback": "2/5"
+                  },
+                  "reports": [],
+                  "image": "./image/4.jpg"
+                }
+              ],
+              "image": "./image/5.jpg"
+            }
+          ],
+          "image": "./image/6.jpg"
+        },
+        {
+          "name": "Jerome Green",
+          "position": "Sr Manager",
+          "department": "Operations",
+          "metrics": {
+            "target_achievement": "80%",
+            "engagement_score": "80%",
+            "rating": 3.8,
+            "feedback": "2/5"
+          },
+          "reports": [
+            {
+              "name": "Sri Hari",
+              "position": "Operations Associate",
+              "department": "Operations",
+              "metrics": {
+                "target_achievement": "85%",
+                "engagement_score": "90%",
+                "rating": 4.1,
+                "feedback": "4/5"
+              },
+              "reports": [],
+              "image": "./image/17.jpg"
+            }
+          ],
+          "image": "./image/7.jpg"
+        }
+      ],
+      "image": "./image/sharif.jpg"
+    }
+  ]
+}
