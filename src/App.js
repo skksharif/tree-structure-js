@@ -4,26 +4,28 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SearchIcon from "@mui/icons-material/Search";
 import employeeData from "./data.json";
+import TrackChangesIcon from "@mui/icons-material/TrackChanges";
+import ScoreIcon from "@mui/icons-material/Score";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
 
 const data = {
   employees: employeeData.employees,
 };
-
 const getGrade = (rating) => {
   if (rating >= 4.0) return "A";
   if (rating >= 3.0) return "B";
   if (rating >= 2.0) return "C";
   return "D";
 };
-
 const searchTree = (node, searchTerm, departmentFilter, gradeFilter) => {
   const isNameMatch =
     !searchTerm || node.name.toLowerCase().includes(searchTerm.toLowerCase());
 
   const isDepartmentMatch =
     departmentFilter === "All" ||
-    node.department.toLowerCase() === departmentFilter.toLowerCase() || 
-    node.department.toLowerCase() === "executive"; // Case-insensitive match
+    node.department.toLowerCase() === departmentFilter.toLowerCase() ||
+    node.department.toLowerCase() === "executive";
 
   const isGradeMatch =
     gradeFilter === "All" || getGrade(node.metrics.rating) === gradeFilter;
@@ -46,15 +48,12 @@ const searchTree = (node, searchTerm, departmentFilter, gradeFilter) => {
       }
     : null;
 };
-
 const TreeNode = ({ node, isRoot, searchTerm }) => {
-  const [isExpandedByUser, setIsExpandedByUser] = useState(null); // Null means not toggled by user
+  const [isExpandedByUser, setIsExpandedByUser] = useState(null);
 
   const toggleExpand = () => {
     setIsExpandedByUser((prev) => (prev === null ? !isRoot : !prev));
   };
-
-  // Determine if the node should be expanded
   const isExpanded =
     isExpandedByUser !== null
       ? isExpandedByUser
@@ -62,15 +61,7 @@ const TreeNode = ({ node, isRoot, searchTerm }) => {
 
   return (
     <li>
-      <div
-        className={`card ${
-          node.isExactMatch
-            ? "exact-match" // Highlight exact matches with green
-            : node.isHighlighted
-            ? "highlight" // Highlight name matches with yellow
-            : ""
-        }`}
-      >
+      <div className={`card ${node.isExactMatch ? "exact-match" : ""}`}>
         <img src={node.image} alt={node.name} />
         <div>
           <p>
@@ -80,14 +71,30 @@ const TreeNode = ({ node, isRoot, searchTerm }) => {
             {node.position} - {node.department}
           </p>
           <div className="metrics">
-            <p>{node.metrics.target_achievement}</p>
-            <p>{node.metrics.engagement_score}</p>
-            <p>{node.metrics.rating}</p>
-            <p>{node.metrics.feedback}</p>
+            <p>
+              <TrackChangesIcon />
+              {node.metrics.target_achievement}
+            </p>
+            <p>
+              <ScoreIcon />
+              {node.metrics.engagement_score}
+            </p>
+            <p>
+              <CompareArrowsIcon />
+              {node.metrics.rating}
+            </p>
+            <p>
+              <StarOutlineIcon />
+              {node.metrics.feedback}
+            </p>
           </div>
         </div>
         {node.reports && node.reports.length > 0 && (
-          <button id="expand" onClick={toggleExpand}>
+          <button
+            id="expand"
+            className={isExpanded ? "expanded" : ""}
+            onClick={toggleExpand}
+          >
             {node.reports.length}
             {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </button>
@@ -96,16 +103,20 @@ const TreeNode = ({ node, isRoot, searchTerm }) => {
       {isExpanded && node.reports && (
         <ul>
           {node.reports
-            .sort((a, b) => b.isExactMatch - a.isExactMatch) // Show exact matches first
+            .sort((a, b) => b.isExactMatch - a.isExactMatch)
             .map((child, index) => (
-              <TreeNode key={index} node={child} isRoot={false} searchTerm={searchTerm} />
+              <TreeNode
+                key={index}
+                node={child}
+                isRoot={false}
+                searchTerm={searchTerm}
+              />
             ))}
         </ul>
       )}
     </li>
   );
 };
-
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [departmentFilter, setDepartmentFilter] = useState("All");
@@ -119,14 +130,13 @@ export default function App() {
     .filter((employee) => employee);
 
   const zoomIn = () => {
-    setScale((prevScale) => Math.min(prevScale + 0.1, 2)); 
+    setScale((prevScale) => Math.min(prevScale + 0.1, 2));
   };
 
   const zoomOut = () => {
-    setScale((prevScale) => Math.max(prevScale - 0.1, 0.5)); 
+    setScale((prevScale) => Math.max(prevScale - 0.1, 0.5));
   };
 
-  // Clear all filters when the button is clicked
   const clearFilters = () => {
     setSearchTerm("");
     setDepartmentFilter("All");
@@ -172,7 +182,9 @@ export default function App() {
               <option value="C">Grade C</option>
               <option value="D">Grade D</option>
             </select>
-            <button onClick={clearFilters} id="clear-button">Clear Filters</button>
+            <button onClick={clearFilters} id="clear-button">
+              Clear Filters
+            </button>
           </div>
         </header>
         <div className="tree">
@@ -186,7 +198,12 @@ export default function App() {
               }}
             >
               {filteredData.map((employee, index) => (
-                <TreeNode key={index} node={employee} isRoot={true} searchTerm={searchTerm} />
+                <TreeNode
+                  key={index}
+                  node={employee}
+                  isRoot={true}
+                  searchTerm={searchTerm}
+                />
               ))}
             </ul>
           )}
