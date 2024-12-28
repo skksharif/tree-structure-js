@@ -23,8 +23,8 @@ const searchTree = (node, searchTerm, departmentFilter, gradeFilter) => {
 
   const isDepartmentMatch =
     departmentFilter === "All" ||
-    node.department === departmentFilter ||
-    node.department === "Executive";
+    node.department.toLowerCase() === departmentFilter.toLowerCase() || 
+    node.department.toLowerCase() === "executive"; // Case-insensitive match
 
   const isGradeMatch =
     gradeFilter === "All" || getGrade(node.metrics.rating) === gradeFilter;
@@ -36,20 +36,19 @@ const searchTree = (node, searchTerm, departmentFilter, gradeFilter) => {
       )
       .filter((child) => child) || [];
 
-  // A node is included if it matches or if any of its children match
   const isMatch = isNameMatch && isDepartmentMatch && isGradeMatch;
+
   return isMatch || filteredReports.length > 0
     ? {
         ...node,
-        isHighlighted: isNameMatch,
-        isExactMatch: isMatch,
+        isHighlighted: searchTerm ? isNameMatch : false,
+        isExactMatch: searchTerm && isMatch,
         reports: filteredReports,
       }
     : null;
 };
 
-
-const TreeNode = ({ node, isRoot }) => {
+const TreeNode = ({ node, isRoot, searchTerm }) => {
   const [isExpandedByUser, setIsExpandedByUser] = useState(null); // Null means not toggled by user
 
   const toggleExpand = () => {
@@ -60,7 +59,7 @@ const TreeNode = ({ node, isRoot }) => {
   const isExpanded =
     isExpandedByUser !== null
       ? isExpandedByUser
-      : isRoot || node.isExactMatch || node.isHighlighted;
+      : isRoot || node.isExactMatch || node.isHighlighted || searchTerm !== "";
 
   return (
     <li>
@@ -100,7 +99,7 @@ const TreeNode = ({ node, isRoot }) => {
           {node.reports
             .sort((a, b) => b.isExactMatch - a.isExactMatch) // Show exact matches first
             .map((child, index) => (
-              <TreeNode key={index} node={child} isRoot={false} />
+              <TreeNode key={index} node={child} isRoot={false} searchTerm={searchTerm} />
             ))}
         </ul>
       )}
@@ -108,13 +107,11 @@ const TreeNode = ({ node, isRoot }) => {
   );
 };
 
-
-
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [departmentFilter, setDepartmentFilter] = useState("All");
   const [gradeFilter, setGradeFilter] = useState("All"); // New state for grades
-  const [scale, setScale] = useState(0.6); // Scale state for zooming
+  const [scale, setScale] = useState(1); // Scale state for zooming
 
   const filteredData = data.employees
     .map((employee) =>
@@ -184,7 +181,7 @@ export default function App() {
               }}
             >
               {filteredData.map((employee, index) => (
-                <TreeNode key={index} node={employee} isRoot={true} />
+                <TreeNode key={index} node={employee} isRoot={true} searchTerm={searchTerm} />
               ))}
             </ul>
           )}
@@ -200,3 +197,4 @@ export default function App() {
     </>
   );
 }
+

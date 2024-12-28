@@ -258,6 +258,9 @@ header select {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
+.card.exact-match {
+  background-color: #d4fcd4; /* Light green background for exact matches */
+}
 
 .card.highlight {
   background-color: #fdf4d4; /* Light yellow background for highlighted matches */
